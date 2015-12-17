@@ -79,7 +79,7 @@ namespace VP_žurnalas
            
         private void zurnalasGrid_Validating(object sender, CancelEventArgs e)
         {
-            // TODO
+            // TODO  
             //MessageBox.Show("zurnalasGrid_Validating");
         }
 
