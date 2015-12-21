@@ -4298,12 +4298,18 @@ SELECT kodasID, organizatorius, kodas, paslauga, islaidos, arPaslauga, arDarbas,
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT kodasID, organizatorius, kodas, paslauga, islaidos, arPaslauga, arDarbas, " +
                 "arPreke, Paskirtis FROM dbo.Kodas";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT kodasID, organizatorius, kodas, paslauga, islaidos, arPaslauga, arDarbas, " +
+                "arPreke, Paskirtis FROM dbo.Kodas\r\nWHERE organizatorius=@organizatorius";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@organizatorius", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "organizatorius", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4328,6 +4334,25 @@ SELECT kodasID, organizatorius, kodas, paslauga, islaidos, arPaslauga, arDarbas,
             ViesiejiDataSet.KodasDataTable dataTable = new ViesiejiDataSet.KodasDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByOrganizatorius(ViesiejiDataSet.KodasDataTable dataTable, string organizatorius) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((organizatorius == null)) {
+                throw new global::System.ArgumentNullException("organizatorius");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(organizatorius));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6874,12 +6899,21 @@ SELECT zurnalasID, data, kodasID, verte, tiekejoKodas, tiekejas, kita, pastabos,
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT zurnalasID, data, kodasID, verte, tiekejoKodas, tiekejas, kita, pastabos, " +
                 "baigta FROM dbo.Zurnalas";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT dbo.Zurnalas.zurnalasID, dbo.Zurnalas.data, dbo.Zurnalas.kodasID, dbo.Zurnalas.verte, dbo.Zurnalas.tiekejoKodas, dbo.Zurnalas.tiekejas, dbo.Zurnalas.kita, dbo.Zurnalas.pastabos, dbo.Zurnalas.baigta FROM dbo.Zurnalas
+INNER JOIN
+Kodas ON dbo.Zurnalas.kodasID=dbo.Kodas.kodasID
+WHERE (dbo.Kodas.kodas=@kodas) AND (dbo.Kodas.organizatorius=@organizatorius)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@kodas", global::System.Data.SqlDbType.VarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, "kodas", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@organizatorius", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "organizatorius", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6904,6 +6938,31 @@ SELECT zurnalasID, data, kodasID, verte, tiekejoKodas, tiekejas, kita, pastabos,
             ViesiejiDataSet.ZurnalasDataTable dataTable = new ViesiejiDataSet.ZurnalasDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByKodasID(ViesiejiDataSet.ZurnalasDataTable dataTable, string kodas, string organizatorius) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((kodas == null)) {
+                throw new global::System.ArgumentNullException("kodas");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(kodas));
+            }
+            if ((organizatorius == null)) {
+                throw new global::System.ArgumentNullException("organizatorius");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(organizatorius));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

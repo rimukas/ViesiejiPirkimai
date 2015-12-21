@@ -26,8 +26,8 @@ namespace VP_žurnalas.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SERVER\\SQLEXPRESS;Initial Catalog=Viesieji2014;Integrated Security=Tr" +
-            "ue")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=RIMAS-WIN7\\SQL_RIMO;Initial Catalog=Viesieji2015;Integrated Security=" +
+            "True")]
         public string ViesiejiConnectionString {
             get {
                 return ((string)(this["ViesiejiConnectionString"]));

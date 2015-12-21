@@ -28,7 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
+            this.organizatoriusComboBox = new System.Windows.Forms.ComboBox();
+            this.viesiejiDataSet = new VP_žurnalas.ViesiejiDataSet();
+            this.organizatoriusBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.organizatoriusTableAdapter = new VP_žurnalas.ViesiejiDataSetTableAdapters.OrganizatoriusTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.viesiejiDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.organizatoriusBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -41,14 +48,43 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // organizatoriusComboBox
+            // 
+            this.organizatoriusComboBox.DataSource = this.organizatoriusBindingSource;
+            this.organizatoriusComboBox.DisplayMember = "organizatorius";
+            this.organizatoriusComboBox.FormattingEnabled = true;
+            this.organizatoriusComboBox.Location = new System.Drawing.Point(12, 43);
+            this.organizatoriusComboBox.Name = "organizatoriusComboBox";
+            this.organizatoriusComboBox.Size = new System.Drawing.Size(256, 21);
+            this.organizatoriusComboBox.TabIndex = 1;
+            this.organizatoriusComboBox.ValueMember = "organizatorius";
+            // 
+            // viesiejiDataSet
+            // 
+            this.viesiejiDataSet.DataSetName = "ViesiejiDataSet";
+            this.viesiejiDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // organizatoriusBindingSource
+            // 
+            this.organizatoriusBindingSource.DataMember = "Organizatorius";
+            this.organizatoriusBindingSource.DataSource = this.viesiejiDataSet;
+            // 
+            // organizatoriusTableAdapter
+            // 
+            this.organizatoriusTableAdapter.ClearBeforeFill = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1228, 422);
+            this.Controls.Add(this.organizatoriusComboBox);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.viesiejiDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.organizatoriusBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -56,6 +92,10 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox organizatoriusComboBox;
+        private ViesiejiDataSet viesiejiDataSet;
+        private System.Windows.Forms.BindingSource organizatoriusBindingSource;
+        private ViesiejiDataSetTableAdapters.OrganizatoriusTableAdapter organizatoriusTableAdapter;
     }
 }
 

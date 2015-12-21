@@ -20,8 +20,17 @@ namespace VP_žurnalas
         private void button1_Click(object sender, EventArgs e)
         {
            
-            Zurnalas ZurnalasForm = new Zurnalas();
+            Zurnalas ZurnalasForm = new Zurnalas(organizatoriusComboBox.Text);
             ZurnalasForm.Show();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'viesiejiDataSet.Organizatorius' table. You can move, or remove it, as needed.
+            this.organizatoriusTableAdapter.Fill(this.viesiejiDataSet.Organizatorius);
+            // TODO: This line of code loads data into the 'viesiejiDataSet.Organizatorius' table. You can move, or remove it, as needed.
+            this.organizatoriusTableAdapter.Fill(this.viesiejiDataSet.Organizatorius);
+
         }
 
      
